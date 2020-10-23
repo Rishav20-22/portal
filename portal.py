@@ -74,10 +74,6 @@ def on_line_click(callee,x,y):
 def export(callee,x,y):
     print("exporting")
     code2.append("}}")
-    for i in code:
-        print(i)
-    for i in code2:
-        print(i)
     try:
         os.remove(sketch_name)
     except FileNotFoundError:
@@ -115,23 +111,19 @@ def draw_rect(callee,x,y):
 def start_left_corner_rect(callee,x,y):
     r1.x1=x
     r1.y1=y
-    print(r1.x1)
-    print(r1.y1)
     gui.set_left_click_action(set_width_rect)
 
 def set_width_rect(callee,x,y):
     r1.h=y-r1.y1
-    print(r1.h)
     gui.set_left_click_action(set_height_rect)
 
 def set_height_rect(callee,x,y):
     r1.w=x-r1.x1
-    print(r1.w)
     gui.rectangle(r1.x1,r1.y1,r1.w,r1.h)
     gui.set_left_click_action(on_line_click)
 
 def draw_ellipse(callee,x,y):
-    print("start ellipse")
+
     gui.set_left_click_action(start_centre_ellipse)
 
 def start_centre_ellipse(callee,x,y):
@@ -154,19 +146,16 @@ def set_height(callee,x,y):
 
 
 def draw_line(callee,x,y):
-    print("correct")
     gui.set_left_click_action(start_line)
 
 def start_line(callee,x,y):
     l1.x1=x
     l1.y1=y
-    print("start")
     gui.set_left_click_action(finish_line)
 
 def finish_line(callee,x,y):
     l1.x2=x
     l1.y2=y
-    print("end")
     gui.line(l1.x1,l1.y1,l1.x2,l1.y2,fill="Black",width=3)
     code2.append("mLine(["+str(l1.x1*0.001)+","+str(l1.y1*0.001)+"],["+str(l1.x2*0.001)+","+str(l1.y2*0.001)+"]);")
     l1.x1=0
@@ -182,4 +171,3 @@ draw_button(575,0,"Draw Circle")
 draw_button(750,0,"Clear")
 draw_button(910,0,"Export")
 gui.set_left_click_action(on_line_click)
-
