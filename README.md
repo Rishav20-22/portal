@@ -1,3 +1,3 @@
 # portal
 
-/dist/portal.exe
+open  /dist/portal.exe
